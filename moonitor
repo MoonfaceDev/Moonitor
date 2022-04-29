@@ -87,7 +87,7 @@ setup() {
 	echo -e "\033[1;34mInstalled Nginx\033[0m"
 	copy-template
 	echo -e "\033[1;34mCopied template files\033[0m"
-	git clone https://github.com/MoonfaceDev/moonitor.git /etc/moonitor/app
+	git clone https://github.com/MoonfaceDev/moonitor-build.git /etc/moonitor/app
 	echo -e "\033[1;34mCopied moonitor UI files\033[0m"
 	install-services
 	echo -e "\033[1;34mInstalled service packages\033[0m"
