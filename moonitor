@@ -22,7 +22,7 @@ install-nginx () {
 	systemctl enable nginx.service
 	cp -a nginx/* /etc/nginx/
 	read -p 'Server hostname: ' server_name
-	find /etc/nginx -type f exec sed -n -i -e 's/<server_name>/$server_name/g' {} \;
+	find /etc/nginx -type f -exec sed -n -i -e 's/<server_name>/$server_name/g' {} \;
 }
 
 copy-template() {
@@ -33,11 +33,11 @@ copy-template() {
 	read -p 'Gateway IP: ' gateway_ip
 	read -p 'Gateway MAC: ' gateway_mac
 	read -p 'Network subnet: ' network_subnet
-	sed -i -n 's/<secret_key>/$secret_key/g' /root/moonitor/api/config.json
-	sed -i -n 's/<database_name>/$database_name/g' /root/moonitor/api/config.json
-	sed -i -n 's/<gateway_ip>/$gateway_ip/g' /root/moonitor/api/config.json
-	sed -i -n 's/<gateway_mac>/$gateway_mac/g' /root/moonitor/api/config.json
-	sed -i -n 's/<network_subnet>/$network_subnet/g' /root/moonitor/scan/config.json
+	sed -i -n "s/<secret_key>/$secret_key/g" /root/moonitor/api/config.json
+	sed -i -n "s/<database_name>/$database_name/g" /root/moonitor/api/config.json
+	sed -i -n "s/<gateway_ip>/$gateway_ip/g" /root/moonitor/api/config.json
+	sed -i -n "s/<gateway_mac>/$gateway_mac/g" /root/moonitor/api/config.json
+	sed -i -n "s/<network_subnet>/$network_subnet/g" /root/moonitor/scan/config.json
 }
 
 install-services() {
