@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-install-requirements () {
+install-requirements {
 	echo "deb http://security.ubuntu.com/ubuntu impish-security main" | tee /etc/apt/sources.list.d/impish-security.list
 	apt-get update
 	apt-get install libssl1.1
@@ -9,7 +9,7 @@ install-requirements () {
 	apt-get install -y nmap
 }
 
-install-mongod () {
+install-mongod {
 	wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
 	echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 	apt-get update
@@ -17,7 +17,7 @@ install-mongod () {
 	systemctl enable mongod
 }
 
-install-nginx () {
+install-nginx {
 	wget http://nginx.org/keys/nginx_signing.key
 	apt-key add nginx_signing.key
 	echo "deb http://nginx.org/packages/ubuntu focal nginx" >> /etc/apt/sources.list
@@ -30,11 +30,11 @@ install-nginx () {
 	find /etc/nginx -type f -exec sed -i -e "s|<server_name>|$server_name|g" {} \;
 }
 
-copy-template() {
+copy-template {
 	mkdir /etc/moonitor
 	cp -a template/* /etc/moonitor/
 	secret_key=$(openssl rand -hex 32)
-	read -p 'Allowed origin: ' origin
+	read -p 'Server origin: ' origin
 	read -p 'Gateway IP: ' gateway_ip
 	read -p 'Gateway MAC: ' gateway_mac
 	read -p 'Network subnet: ' network_subnet
@@ -45,7 +45,7 @@ copy-template() {
 	sed -i "s|<network_subnet>|$network_subnet|g" /etc/moonitor/scan/config.json
 }
 
-install-services() {
+install-services {
 	pip install git+https://github.com/MoonfaceDev/moonlan.git
 	pip install git+https://github.com/MoonfaceDev/moonscan.git
 	cp -a services/* /etc/systemd/system/
@@ -53,7 +53,7 @@ install-services() {
 	systemctl enable moonscan
 }
 
-start() {
+start {
 	systemctl daemon-reload
 	systemctl start moonscan
 	systemctl start moonlan
@@ -62,7 +62,7 @@ start() {
 	echo -e "\033[1;34mStarted services\033[0m"
 }
 
-restart() {
+restart {
 	systemctl daemon-reload
 	systemctl restart moonscan
 	systemctl restart moonlan
@@ -71,7 +71,7 @@ restart() {
 	echo -e "\033[1;34mRestarted services\033[0m"
 }
 
-stop() {
+stop {
 	systemctl stop moonscan
 	systemctl stop moonlan
 	systemctl stop mongod
@@ -79,7 +79,7 @@ stop() {
 	echo -e "\033[1;34mStopped services\033[0m"
 }
 
-setup() {
+setup {
 	iptables -I INPUT -j ACCEPT
 	install-requirements
 	echo -e "\033[1;34mInstalled linux requirements\033[0m"
