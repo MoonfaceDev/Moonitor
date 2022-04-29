@@ -49,13 +49,27 @@
    - Congratulations! You have an Ubuntu VM
    </details>
 
-
+2. Start a bash on the VM using Terminal app, or an ssh connection
+   
+3. Switch to root user
 ```bash
 sudo su
-cd /root
+```
+
+4. Install git
+```bash
 apt-get update
 apt-get install -y git
+```
+
+5. Clone Moonitor Setup files from GitHub
+```bash
+cd /root
 git clone https://github.com/MoonfaceDev/moonitor-setup.git "Moonitor Setup"
 cd "Moonitor Setup"
+```
+
+6. Run Moonitor setup wizard
+```bash
 ./moonitor setup
 ```
