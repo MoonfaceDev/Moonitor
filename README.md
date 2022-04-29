@@ -10,6 +10,7 @@ Download Ubuntu image: https://ubuntu.com/download/desktop/thank-you?version=22.
 ```bash
 sudo su
 cd /root
+apt-get update
 apt-get install -y git
 git clone https://github.com/MoonfaceDev/moonitor-setup.git "Moonitor Setup"
 cd "Moonitor Setup"
