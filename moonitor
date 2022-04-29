@@ -80,6 +80,7 @@ stop() {
 }
 
 setup() {
+	iptables -I INPUT -j ACCEPT
 	install-requirements
 	echo -e "\033[1;34mInstalled linux requirements\033[0m"
 	install-mongod
