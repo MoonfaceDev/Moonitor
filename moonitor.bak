@@ -16,14 +16,13 @@ install-nginx () {
 	apt-get update
 	apt-get install -y nginx
 	systemctl enable nginx.service
-	cp 
-	cp -a nginx/ /etc/nginx/
+	cp -a nginx/* /etc/nginx/
 }
 
 install-services() {
 	pip install git+https://github.com/MoonfaceDev/moonlan.git@dev
 	pip install git+https://github.com/MoonfaceDev/moonscan.git@dev
-	cp -a services/ /etc/systemd/system/
+	cp -a services/* /etc/systemd/system/
 	systemctl enable moonlan
 	systemctl enable moonscan
 }
@@ -55,7 +54,7 @@ setup() {
 	apt-get install pip
 	install-mongod
 	install-nginx
-	cp -a template/ /root/moonitor/
+	cp -a template/* /root/moonitor/
 	git clone https://github.com/MoonfaceDev/moonitor.git@dev /root/moonitor/app
 	echo "Copied template files"
 	install-services
