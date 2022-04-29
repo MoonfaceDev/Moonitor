@@ -1,6 +1,6 @@
 {
   "network_scan": {
-    "network_subnet": "10.100.102.0/24",
+    "network_subnet": "<network_subnet>",
     "scan_interval": 300
   },
   "entity_scan": {
