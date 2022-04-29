@@ -3,7 +3,7 @@
 install-requirements() {
 	echo "deb http://security.ubuntu.com/ubuntu impish-security main" | tee /etc/apt/sources.list.d/impish-security.list
 	apt-get update
-	apt-get install libssl1.1
+	apt-get install -y libssl1.1
 	apt-get install -y openssl
 	apt-get install -y pip
 	apt-get install -y nmap
@@ -102,5 +102,15 @@ setup() {
 enable-user() {
 	mongo --eval "db.users.update({\"email\":\"$1\"},{\$set:{\"disabled\":false}});" moonlan
 }
+
+help() {
+	echo -e "Usage:\n  ./moonitor <command> [options]\n\nCommands:\n  help Show help for commands.\n  install-requirements Install required linux packages from apt\n  install-mongod Install MongoDB package, enable systemd service\n  install-nginx Install nginx package, enable systemd service, copy server configuration files\n  copy-template <origin> <gateway_ip> <gateway_mac> <network_subnet> Copy configuration file templates, fill in given values\n  install-ui <origin> Install UI build files, fill in origin for API requests\n  install-services Install moonscan and moonlan, enable matching services\n  start Start all services\n  restart Restart all services\n  stop Stop all services\n  setup Run setup wizard\n  enable-user <email> Enable user with given email"
+}
+
+if [ $# -eq 0 ]
+  then
+  help
+  exit 0
+fi
 
 "$@"
