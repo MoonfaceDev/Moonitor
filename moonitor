@@ -34,15 +34,15 @@ copy-template() {
 	mkdir /etc/moonitor
 	cp -a template/* /etc/moonitor/
 	secret_key=$(openssl rand -hex 32)
+	read -p 'Allowed origin: ' origin
 	read -p 'Gateway IP: ' gateway_ip
 	read -p 'Gateway MAC: ' gateway_mac
 	read -p 'Network subnet: ' network_subnet
-	read -p 'Origin URL: ' origin_url
 	sed -i "s|<secret_key>|$secret_key|g" /etc/moonitor/api/config.json
+	sed -i "s|<origin>|$origin|g" /etc/moonitor/api/config.json
 	sed -i "s|<gateway_ip>|$gateway_ip|g" /etc/moonitor/api/config.json
 	sed -i "s|<gateway_mac>|$gateway_mac|g" /etc/moonitor/api/config.json
 	sed -i "s|<network_subnet>|$network_subnet|g" /etc/moonitor/scan/config.json
-	sed -i "s|<origin_url>|$origin_url|g" /etc/moonitor/api/config.json
 }
 
 install-services() {
