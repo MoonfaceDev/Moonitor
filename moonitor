@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 install-requirements () {
-	apt-get install pip
+	apt-get install -y pip
 }
 
 install-mongod () {
