@@ -6,6 +6,7 @@ install-requirements () {
 	apt-get install libssl1.1
 	apt-get install -y openssl
 	apt-get install -y pip
+	apt-get install -y nmap
 }
 
 install-mongod () {
