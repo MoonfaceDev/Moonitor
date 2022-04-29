@@ -100,7 +100,7 @@ setup() {
 }
 
 enable-user() {
-	mongo --eval "db.users.update({\"email\":\"$2\"},{\$set:{\"disabled\":false}});" "$1"
+	mongo --eval "db.users.update({\"email\":\"$1\"},{\$set:{\"disabled\":false}});" moonlan
 }
 
 "$@"
