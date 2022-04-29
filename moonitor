@@ -38,11 +38,13 @@ copy-template() {
 	read -p 'Gateway IP: ' gateway_ip
 	read -p 'Gateway MAC: ' gateway_mac
 	read -p 'Network subnet: ' network_subnet
+	read -p 'Origin URL: ' origin_url
 	sed -i "s|<secret_key>|$secret_key|g" /etc/moonitor/api/config.json
 	sed -i "s|<database_name>|$database_name|g" /etc/moonitor/api/config.json
 	sed -i "s|<gateway_ip>|$gateway_ip|g" /etc/moonitor/api/config.json
 	sed -i "s|<gateway_mac>|$gateway_mac|g" /etc/moonitor/api/config.json
 	sed -i "s|<network_subnet>|$network_subnet|g" /etc/moonitor/scan/config.json
+	sed -i "s|<origin_url>|$origin_url|g" /etc/moonitor/scan/config.json
 }
 
 install-services() {
