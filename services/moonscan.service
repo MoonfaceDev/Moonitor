@@ -1,0 +1,15 @@
+[Unit]
+Description = Scan the LAN
+After = network.target
+ 
+[Service]
+Type = simple
+ExecStart = /usr/local/bin/moonscan
+User = root
+Restart = on-failure
+SyslogIdentifier = /var/log/moonscan
+RestartSec = 5
+TimeoutStartSec = infinity
+ 
+[Install]
+WantedBy = multi-user.target

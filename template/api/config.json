@@ -1,0 +1,21 @@
+{
+  "authentication": {
+    "secret_key": "9dc336b8653b669e1b794719453ffcd8a4b8d6f7a2e78ef03a64f924a1ad610f",
+    "algorithm": "HS256",
+    "access_token_expire_minutes": "30"
+  },
+  "database": {
+    "database_name": "moonlan"
+  },
+  "spoofing": {
+    "gateway_ip": "10.100.102.1",
+    "gateway_mac": "34:49:5b:08:c4:87",
+    "ip_forward_file_path": "/proc/sys/net/ipv4/ip_forward"
+  },
+  "server": {
+    "allowed_origins": [
+      "https://moonlan",
+      "http://localhost:3000"
+    ]
+  }
+}

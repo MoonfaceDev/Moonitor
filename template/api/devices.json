@@ -1,0 +1,212 @@
+[
+  {
+    "name": "ELAI-PC",
+    "mac": "04:42:1a:8e:c3:d8",
+    "type": "PC"
+  },
+  {
+    "name": "ELAI-PHONE-BASEMENT",
+    "mac": "7a:ea:8e:85:4b:17",
+    "type": "Phone"
+  },
+  {
+    "name": "ELAI-PHONE-BASEMENT",
+    "mac": "36:7a:d3:a9:f2:ba",
+    "type": "Phone"
+  },
+  {
+    "name": "ELAI-PHONE",
+    "mac": "d6:af:bb:35:dc:8b",
+    "type": "Phone"
+  },
+  {
+    "name": "ELAI-SERVER",
+    "mac": "a0:88:b4:33:48:44",
+    "type": "PC"
+  },
+  {
+    "name": "ELAI-SERVER-VM",
+    "mac": "e7:e6:f6:b1:0d:21",
+    "type": "PC"
+  },
+  {
+    "name": "ELAI-SERVER-VM",
+    "mac": "03:fb:bc:3e:bc:2c",
+    "type": "PC"
+  },
+  {
+    "name": "MIKI-PHONE",
+    "mac": "74:23:44:ea:51:b5",
+    "type": "Phone"
+  },
+  {
+    "name": "ROI-AMIT-PS4",
+    "mac": "0c:fe:45:fb:ad:1c",
+    "type": "Game console"
+  },
+  {
+    "name": "ROI-AMIT-PS4",
+    "mac": "2c:cc:44:7c:b7:6c",
+    "type": "Game console"
+  },
+  {
+    "name": "ELAI-PS4",
+    "mac": "0c:fe:45:b9:4e:24",
+    "type": "Game console"
+  },
+  {
+    "name": "ROI-PHONE",
+    "mac": "48:2c:a0:e2:aa:30",
+    "type": "Phone"
+  },
+  {
+    "name": "AMIT-PC",
+    "mac": "f0:92:1c:5e:b3:56",
+    "type": "PC"
+  },
+  {
+    "name": "ROUTER",
+    "mac": "34:49:5b:08:c4:87",
+    "type": "Router"
+  },
+  {
+    "name": "ITAY-WORK-PC",
+    "mac": "50:eb:71:ef:a2:68",
+    "type": "PC"
+  },
+  {
+    "name": "ITAY-PHONE",
+    "mac": "16:b3:d2:1b:01:3c",
+    "type": "Phone"
+  },
+  {
+    "name": "YES",
+    "mac": "d4:cf:f9:80:dd:85",
+    "type": "TV Adapter"
+  },
+  {
+    "name": "YES",
+    "mac": "d4:cf:f9:80:de:29",
+    "type": "TV Adapter"
+  },
+  {
+    "name": "YES",
+    "mac": "d4:cf:f9:80:de:38",
+    "type": "TV Adapter"
+  },
+  {
+    "name": "ITAY-MUSIC",
+    "mac": "90:09:d0:02:ff:96",
+    "type": "Music"
+  },
+  {
+    "name": "ITAY-N-3361",
+    "mac": "dc:fb:02:5a:33:61",
+    "type": "Music"
+  },
+  {
+    "name": "ITAY-DCS-STREAMER",
+    "mac": "40:2e:71:c2:df:db",
+    "type": "Music"
+  },
+  {
+    "name": "LG-TV",
+    "mac": "c4:36:6c:cf:82:a8",
+    "type": "TV"
+  },
+  {
+    "name": "LG-TV",
+    "mac": "eb:f2:e2:6c:12:64",
+    "type": "TV"
+  },
+  {
+    "name": "LG-TV",
+    "mac": "e4:3e:d7:06:44:7c",
+    "type": "TV"
+  },
+  {
+    "name": "YAIR-PC",
+    "mac": "34:2e:b7:c7:35:b2",
+    "type": "PC"
+  },
+  {
+    "name": "YAIR-PHONE",
+    "mac": "fe:ec:c4:20:cb:5b",
+    "type": "Phone"
+  },
+  {
+    "name": "ITAY-TABLET",
+    "mac": "4a:9a:d6:48:5b:2f",
+    "type": "Tablet"
+  },
+  {
+    "name": "ITAY-PC",
+    "mac": "90:61:ae:c3:d8:86",
+    "type": "PC"
+  },
+  {
+    "name": "AMIT-PHONE",
+    "mac": "82:01:72:dc:35:1e",
+    "type": "Phone"
+  },
+  {
+    "name": "PRINTER",
+    "mac": "b0:5c:da:bf:5a:eb",
+    "type": "Printer"
+  },
+  {
+    "name": "SECURITY-CAMERA",
+    "mac": "74:f8:db:50:d2:c2",
+    "type": "Security"
+  },
+  {
+    "name": "DVR",
+    "mac": "00:03:91:f9:f9:0f",
+    "type": "Security"
+  },
+  {
+    "name": "MIKI-PC",
+    "mac": "f8:94:c2:df:d1:17",
+    "type": "PC"
+  },
+  {
+    "name": "MIKI-PC",
+    "mac": "d0:37:45:e2:36:c9",
+    "type": "PC"
+  },
+  {
+    "name": "ROI-PC",
+    "mac": "ec:b1:d7:97:1a:dc",
+    "type": "PC"
+  },
+  {
+    "name": "SALON-TV",
+    "mac": "c8:08:e9:a1:65:0d",
+    "type": "TV"
+  },
+  {
+    "name": "ITAY-PHONE-BASEMENT",
+    "mac": "fe:67:68:ff:68:e6",
+    "type": "Phone"
+  },
+  {
+    "name": "AMIT-TABLET",
+    "mac": "12:42:7a:2c:1e:a6",
+    "type": "Tablet"
+  },
+  {
+    "name": "ROI-IPAD",
+    "mac": "94:e9:6a:0c:ba:a5",
+    "type": "Tablet"
+  },
+  {
+    "name": "MASHI-PHONE",
+    "mac": "42:c8:65:b0:38:f7",
+    "type": "Phone"
+  },
+  {
+    "name": "ITAY-PC",
+    "mac": "00:e0:4c:36:13:f6",
+    "type": "PC"
+  }
+]

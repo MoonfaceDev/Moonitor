@@ -1,0 +1,66 @@
+#!/usr/bin/bash
+
+install-mongod () {
+	wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
+	echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+	apt-get update
+	apt-get install -y mongodb-org
+	systemctl enable mongod
+}
+
+install-nginx () {
+	wget http://nginx.org/keys/nginx_signing.key
+	apt-key add nginx_signing.key
+	cat "\ndeb http://nginx.org/packages/ubuntu focal nginx" > /etc/apt/sources.list
+	cat "\ndeb-src http://nginx.org/packages/ubuntu focal nginx" > /etc/apt/sources.list
+	apt-get update
+	apt-get install -y nginx
+	systemctl enable nginx.service
+	cp -r nginx/ /etc/nginx/sites-available/
+}
+
+install-services() {
+	pip install git+https://github.com/MoonfaceDev/moonlan.git@dev
+	pip install git+https://github.com/MoonfaceDev/moonscan.git@dev
+	cp -r services/ /etc/systemd/system/
+	systemctl enable moonlan
+	systemctl enable moonscan
+}
+
+start() {
+	systemctl daemon-reload
+	systemctl start moonscan
+	systemctl start moonlan
+	systemctl start mongod
+	systemctl start nginx.service
+}
+
+restart() {
+	systemctl daemon-reload
+	systemctl restart moonscan
+	systemctl restart moonlan
+	systemctl restart mongod
+	systemctl restart nginx.service
+}
+
+stop() {
+	systemctl stop moonscan
+	systemctl stop moonlan
+	systemctl stop mongod
+	systemctl stop nginx.service
+}
+
+setup() {
+	apt-get install pip
+	install-mongod
+	install-nginx
+	cp -r template/ /root/moonitor/
+	git clone https://github.com/MoonfaceDev/moonitor.git@dev /root/moonitor/app
+	echo "Copied template files"
+	install-services
+	echo "Installed service packages"
+	start
+	echo "Started services"
+}
+
+"$@"
