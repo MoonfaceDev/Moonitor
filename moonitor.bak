@@ -22,7 +22,7 @@ install-nginx () {
 	systemctl enable nginx.service
 	cp -a nginx/* /etc/nginx/
 	read -p 'Server hostname: ' server_name
-	find /etc/nginx -type f -exec sed -i -e "s|<server_name>|$server_name|g" {} \;
+	find /etc/nginx -type f -exec sed -i -e 's|<server_name>|$server_name|g' {} \;
 }
 
 copy-template() {
