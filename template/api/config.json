@@ -5,7 +5,7 @@
     "access_token_expire_minutes": "30"
   },
   "database": {
-    "database_name": "<database_name>"
+    "database_name": "moonlan"
   },
   "spoofing": {
     "gateway_ip": "<gateway_ip>",
