@@ -1,0 +1,15 @@
+[Unit]
+Description = Serve the LAN info
+After = network.target
+
+[Service]
+Type = simple
+ExecStart = /usr/local/bin/moonlan
+User = root
+Restart = on-failure
+SyslogIdentifier = /var/log/moonlan
+RestartSec = 5
+TimeoutStartSec = infinity
+
+[Install]
+WantedBy = multi-user.target

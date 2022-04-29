@@ -1,0 +1,20 @@
+{
+  "authentication": {
+    "secret_key": "<secret_key>",
+    "algorithm": "HS256",
+    "access_token_expire_minutes": "30"
+  },
+  "database": {
+    "database_name": "<database_name>"
+  },
+  "spoofing": {
+    "gateway_ip": "<gateway_ip>",
+    "gateway_mac": "<gateway_mac>",
+    "ip_forward_file_path": "/proc/sys/net/ipv4/ip_forward"
+  },
+  "server": {
+    "allowed_origins": [
+      "http://localhost:3000"
+    ]
+  }
+}

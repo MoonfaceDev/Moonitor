@@ -1,0 +1,9 @@
+{
+  "network_scan": {
+    "network_subnet": "<network_subnet>",
+    "scan_interval": 300
+  },
+  "entity_scan": {
+    "ports_to_scan": 100
+  }
+}
