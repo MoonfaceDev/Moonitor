@@ -15,7 +15,7 @@
   "server": {
     "allowed_origins": [
       "http://localhost:3000",
-      "<origin_url>"
+      "<origin>"
     ]
   }
 }
