@@ -26,23 +26,23 @@ install-nginx () {
 }
 
 copy-template() {
-	mkdir /root/moonitor
-	cp -a template/* /root/moonitor/
+	mkdir /etc/moonitor
+	cp -a template/* /etc/moonitor/
 	secret_key=$(openssl rand -hex 32)
 	read -p 'Database name: ' database_name
 	read -p 'Gateway IP: ' gateway_ip
 	read -p 'Gateway MAC: ' gateway_mac
 	read -p 'Network subnet: ' network_subnet
-	sed -i "s|<secret_key>|$secret_key|g" /root/moonitor/api/config.json
-	sed -i "s|<database_name>|$database_name|g" /root/moonitor/api/config.json
-	sed -i "s|<gateway_ip>|$gateway_ip|g" /root/moonitor/api/config.json
-	sed -i "s|<gateway_mac>|$gateway_mac|g" /root/moonitor/api/config.json
-	sed -i "s|<network_subnet>|$network_subnet|g" /root/moonitor/scan/config.json
+	sed -i "s|<secret_key>|$secret_key|g" /etc/moonitor/api/config.json
+	sed -i "s|<database_name>|$database_name|g" /etc/moonitor/api/config.json
+	sed -i "s|<gateway_ip>|$gateway_ip|g" /etc/moonitor/api/config.json
+	sed -i "s|<gateway_mac>|$gateway_mac|g" /etc/moonitor/api/config.json
+	sed -i "s|<network_subnet>|$network_subnet|g" /etc/moonitor/scan/config.json
 }
 
 install-services() {
-	pip install git+https://github.com/MoonfaceDev/moonlan.git@dev
-	pip install git+https://github.com/MoonfaceDev/moonscan.git@dev
+	pip install git+https://github.com/MoonfaceDev/moonlan.git
+	pip install git+https://github.com/MoonfaceDev/moonscan.git
 	cp -a services/* /etc/systemd/system/
 	systemctl enable moonlan
 	systemctl enable moonscan
@@ -83,7 +83,7 @@ setup() {
 	echo -e "\033[1;34mInstalled Nginx\033[0m"
 	copy-template
 	echo -e "\033[1;34mCopied template files\033[0m"
-	git clone https://github.com/MoonfaceDev/moonitor.git@dev /root/moonitor/app
+	git clone https://github.com/MoonfaceDev/moonitor.git /etc/moonitor/app
 	echo -e "\033[1;34mCopied moonitor UI files\033[0m"
 	install-services
 	echo -e "\033[1;34mInstalled service packages\033[0m"
