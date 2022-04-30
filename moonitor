@@ -26,6 +26,7 @@ install-nginx() {
 	apt-get install -y nginx
 	systemctl enable nginx.service
 	cp -a nginx/* /etc/nginx/
+	sed -i "s|<server_name>|$1|g" /etc/nginx/sites-available/moonlan.conf
 }
 
 copy-template() {
@@ -33,7 +34,7 @@ copy-template() {
 	cp -a template/* /etc/moonitor/
 	secret_key=$(openssl rand -hex 32)
 	sed -i "s|<secret_key>|$secret_key|g" /etc/moonitor/api/config.json
-	sed -i "s|<origin>|$1|g" /etc/moonitor/api/config.json
+	sed -i "s|<origin>|http://$1|g" /etc/moonitor/api/config.json
 	sed -i "s|<gateway_ip>|$2|g" /etc/moonitor/api/config.json
 	sed -i "s|<gateway_mac>|$3|g" /etc/moonitor/api/config.json
 	sed -i "s|<network_subnet>|$4|g" /etc/moonitor/scan/config.json
@@ -41,7 +42,7 @@ copy-template() {
 
 install-ui() {
 	git clone https://github.com/MoonfaceDev/moonitor-build.git /etc/moonitor/app
-	find /etc/moonitor/app -type f -exec sed -i -e "s|<origin>|$1|g" {} \;
+	find /etc/moonitor/app -type f -exec sed -i -e "s|<origin>|http://$1|g" {} \;
 }
 
 install-services() {
@@ -79,7 +80,7 @@ stop() {
 }
 
 setup() {
-	read -p 'Server origin: ' origin
+	read -p 'Server hostname: ' hostname
 	read -p 'Gateway IP: ' gateway_ip
 	read -p 'Gateway MAC: ' gateway_mac
 	read -p 'Network subnet: ' network_subnet
@@ -88,11 +89,11 @@ setup() {
 	echo -e "\033[1;34mInstalled linux requirements\033[0m"
 	install-mongod
 	echo -e "\033[1;34mInstalled MongoDB\033[0m"
-	install-nginx
+	install-nginx "$hostname"
 	echo -e "\033[1;34mInstalled Nginx\033[0m"
-	copy-template "$origin" "$gateway_ip" "$gateway_mac" "$network_subnet"
+	copy-template "$hostname" "$gateway_ip" "$gateway_mac" "$network_subnet"
 	echo -e "\033[1;34mCopied template files\033[0m"
-	install-ui "$origin"
+	install-ui "$hostname"
 	echo -e "\033[1;34mCopied moonitor UI files\033[0m"
 	install-services
 	echo -e "\033[1;34mInstalled service packages\033[0m"
