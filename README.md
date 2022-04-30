@@ -17,7 +17,7 @@
    - Select 'Create a virtual hard disk now' and proceed
    - Select 'VDI (VirtualBox Disk Image)' as hard disk file type, and proceed
    - Select 'Dynamically allocated' for storage on physical hard disk, and proceed
-   - Set the hard disk location and size, the default disk size should be sufficient for Moonitor. Then proceed
+   - Set the hard disk location and size, it is recommended to allocate at least 20GB. Then proceed
    
    <br/>**Configure network:**
    - Click 'Settings' to open VM settings window
@@ -69,7 +69,46 @@ git clone https://github.com/MoonfaceDev/moonitor-setup.git "Moonitor Setup"
 cd "Moonitor Setup"
 ```
 
-6. Run Moonitor setup wizard
+## Setup Wizard
+1. Install net-tools
+```bash
+apt-get install -y net-tools
+```
+
+2. Check VM's IP address and subnet (keep for later use)
+```bash
+ip a
+```
+Example:
+![ip-a-guide](https://user-images.githubusercontent.com/36325466/166083106-83c2c111-fc58-4ecf-853f-a3be3cbe15cb.png)
+In this example, the VM's IP address is 10.100.102.143 and the subnet is 10.100.102.143/24.
+
+3. Check gateway IP:
+```bash
+route -n
+```
+![route-n-guide](https://user-images.githubusercontent.com/36325466/166083652-3dcf73c9-d01f-4445-9a78-3259720eae72.png)
+Example:
+In this example, the gateway IP address is 10.100.102.1
+
+4. Check gateway MAC:
+```bash
+# Replace <gateway_ip> with gateway's IP address
+arp <gateway_ip>
+```
+![arp-guide](https://user-images.githubusercontent.com/36325466/166083908-9a5053eb-ea51-4cd9-b8bd-e2590e4a46dd.png)
+Example:
+In this example, the MAC addresses ends with '...:c4:87'
+
+5. Run Moonitor setup wizard
 ```bash
 ./moonitor setup
 ```
+The wizard will ask you for the following parameters:
+- Server origin: protocol, hostname, port for external users to connect to the server. Format: <protocol>://<hostname>:<port>
+*Examples: http://10.100.102.143, http://elaipc*
+- Gateway IP: IP address of the default gateway (router)
+*Example: 10.100.102.1*
+- Gateway MAC: MAC address of the default gateway (router)
+- Network subnet: IP addresses to ping in each scan
+*Example: 10.100.102.143/24
