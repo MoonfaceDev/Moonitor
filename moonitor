@@ -124,6 +124,14 @@ enable-user() {
 	mongo --eval "db.users.update({\"email\":\"$1\"},{\$set:{\"disabled\":false}});" moonlan
 }
 
+disable-user() {
+	if [ -z "$1" ]
+	  then
+    	    echo "No user email supplied"
+	fi
+	mongo --eval "db.users.update({\"email\":\"$1\"},{\$set:{\"disabled\":true}});" moonlan
+}
+
 help() {
 	b="\033[1m"
 	n="\033[0m"
@@ -143,6 +151,7 @@ help() {
 	echo -e "\n  stop\n      Stop all services."
 	echo -e "\n  setup\n      Run setup wizard."
 	echo -e "\n  enable-user <email>\n      Enable user with given email."
+	echo -e "\n  disable-user <email>\n      Disable user with given email."
 }
 
 if [ $# -eq 0 ]
