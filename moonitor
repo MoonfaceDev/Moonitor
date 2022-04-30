@@ -18,6 +18,10 @@ install-mongod() {
 }
 
 install-nginx() {
+	if [ -z "$1" ]
+	  then
+    	    echo "No server hostname supplied"
+	fi
 	wget http://nginx.org/keys/nginx_signing.key
 	apt-key add nginx_signing.key
 	echo "deb http://nginx.org/packages/ubuntu focal nginx" >> /etc/apt/sources.list
@@ -30,17 +34,29 @@ install-nginx() {
 }
 
 copy-template() {
+	if [ -z "$1" ]
+	  then
+    	    echo "No server hostname supplied"
+	fi
+	if [ -z "$2" ]
+	  then
+    	    echo "No network subnet supplied"
+	fi
 	mkdir /etc/moonitor
 	cp -a template/* /etc/moonitor/
 	secret_key=$(openssl rand -hex 32)
 	sed -i "s|<secret_key>|$secret_key|g" /etc/moonitor/api/config.json
 	sed -i "s|<origin>|http://$1|g" /etc/moonitor/api/config.json
-	sed -i "s|<gateway_ip>|$2|g" /etc/moonitor/api/config.json
-	sed -i "s|<gateway_mac>|$3|g" /etc/moonitor/api/config.json
-	sed -i "s|<network_subnet>|$4|g" /etc/moonitor/scan/config.json
+	sed -i "s|<network_subnet>|$2|g" /etc/moonitor/scan/config.json
+	sed -i "s|<gateway_ip>|$3|g" /etc/moonitor/api/config.json
+	sed -i "s|<gateway_mac>|$4|g" /etc/moonitor/api/config.json
 }
 
 install-ui() {
+	if [ -z "$1" ]
+	  then
+    	    echo "No server hostname supplied"
+	fi
 	git clone https://github.com/MoonfaceDev/moonitor-build.git /etc/moonitor/app
 	find /etc/moonitor/app -type f -exec sed -i -e "s|<origin>|http://$1|g" {} \;
 }
@@ -81,9 +97,9 @@ stop() {
 
 setup() {
 	read -p 'Server hostname: ' hostname
+	read -p 'Network subnet: ' network_subnet
 	read -p 'Gateway IP: ' gateway_ip
 	read -p 'Gateway MAC: ' gateway_mac
-	read -p 'Network subnet: ' network_subnet
 	iptables -I INPUT -j ACCEPT
 	install-requirements
 	echo -e "\033[1;34mInstalled linux requirements\033[0m"
@@ -91,7 +107,7 @@ setup() {
 	echo -e "\033[1;34mInstalled MongoDB\033[0m"
 	install-nginx "$hostname"
 	echo -e "\033[1;34mInstalled Nginx\033[0m"
-	copy-template "$hostname" "$gateway_ip" "$gateway_mac" "$network_subnet"
+	copy-template "$hostname" "$network_subnet" "$gateway_ip" "$gateway_mac"
 	echo -e "\033[1;34mCopied template files\033[0m"
 	install-ui "$hostname"
 	echo -e "\033[1;34mCopied moonitor UI files\033[0m"
@@ -101,6 +117,10 @@ setup() {
 }
 
 enable-user() {
+	if [ -z "$1" ]
+	  then
+    	    echo "No user email supplied"
+	fi
 	mongo --eval "db.users.update({\"email\":\"$1\"},{\$set:{\"disabled\":false}});" moonlan
 }
 
@@ -115,7 +135,7 @@ help() {
 	echo -e "\n  install-requirements\n      Install required linux packages from apt."
 	echo -e "\n  install-mongod\n      Install MongoDB package, enable systemd service."
 	echo -e "\n  install-nginx <hostname>\n      Install nginx package, enable systemd service, copy server configuration files."
-	echo -e "\n  copy-template <hostname> <gateway_ip> <gateway_mac> <network_subnet>\n      Copy configuration file templates, fill in given values."
+	echo -e "\n  copy-template <hostname> <network_subnet> [gateway_ip] [gateway_mac]\n      Copy configuration file templates, fill in given values."
 	echo -e "\n  install-ui <hostname>\n      Install UI build files, fill in origin for API requests."
 	echo -e "\n  install-services\n      Install moonscan and moonlan, enable matching services."
 	echo -e "\n  start\n      Start all services."
