@@ -81,7 +81,7 @@ ip a
 ```
 Example:
 ![ip-a-guide](https://user-images.githubusercontent.com/36325466/166083106-83c2c111-fc58-4ecf-853f-a3be3cbe15cb.png)
-In this example, the VM's IP address is 10.100.102.143 and the subnet is 10.100.102.143/24.
+In this example, the VM's IP address is 10.100.102.143 and the subnet is 10.100.102.0/24.
 
 3. Check gateway IP:
 ```bash
@@ -111,7 +111,7 @@ The wizard will ask you for the following parameters:
 <br/>_Example: 10.100.102.1_
 - Gateway MAC: MAC address of the default gateway (router)
 - Network subnet: IP addresses to ping in each scan
-<br/>_Example: 10.100.102.143/24_
+<br/>_Example: 10.100.102.0/24_
 
 <br/>Enter all parameters, and moonitor will do the rest :)
 
