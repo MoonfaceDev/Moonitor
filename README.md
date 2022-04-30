@@ -105,8 +105,8 @@ In this example, the MAC addresses ends with '...:c4:87'
 ./moonitor setup
 ```
 The wizard will ask you for the following parameters:
-- Server origin: protocol, hostname, port for external users to connect to the server. Format: \<protocol\>://\<hostname\>:\<port\>
-<br/>_Examples: http://10.100.102.143, http://elaipc_
+- Server hostname: hostname (IP address, NetBIOS or FQDN) for external users to connect to the server
+<br/>_Examples: 10.100.102.143, elaipc_
 - Gateway IP: IP address of the default gateway (router)
 <br/>_Example: 10.100.102.1_
 - Gateway MAC: MAC address of the default gateway (router)
@@ -116,6 +116,21 @@ The wizard will ask you for the following parameters:
 <br/>Enter all parameters, and moonitor will do the rest :)
 
 ## Other Options
+* Start services:
+```bash
+./moonitor start
+```
+
+* Stop services:
+```bash
+./moonitor stop
+```
+
+* Restart services:
+```bash
+./moonitor restart
+```
+
 * Enable user:
 ```bash
 # Replace <user_email> with user_email
