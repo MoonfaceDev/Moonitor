@@ -35,7 +35,7 @@
    <br/>**Install the image**
    - After a while, a white screen will appear. Click 'Install Ubuntu'
    - Select your keyboard layout and proceed
-   - In 'Updates and other software', keep the default options and proceed
+   - In 'Updates and other software', select 'Minimal installation' and procees
    - Select 'Erase disk and install Ubuntu' and click 'Install Now' to proceed
    - A popup regarding disk changes will appear, click 'Continue'
    - Select your time zone and proceed
