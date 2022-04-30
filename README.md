@@ -136,3 +136,9 @@ The wizard will ask you for the following parameters:
 # Replace <user_email> with user_email
 ./moonitor enable-user <user_email>
 ```
+
+* Disable user:
+```bash
+# Replace <user_email> with user_email
+./moonitor disable-user <user_email>
+```
