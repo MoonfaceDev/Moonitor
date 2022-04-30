@@ -105,10 +105,19 @@ In this example, the MAC addresses ends with '...:c4:87'
 ./moonitor setup
 ```
 The wizard will ask you for the following parameters:
-- Server origin: protocol, hostname, port for external users to connect to the server. Format: <protocol>://<hostname>:<port>
-*Examples: http://10.100.102.143, http://elaipc*
+- Server origin: protocol, hostname, port for external users to connect to the server. Format: \<protocol\>://\<hostname\>:\<port\>
+<br/>_Examples: http://10.100.102.143, http://elaipc_
 - Gateway IP: IP address of the default gateway (router)
-*Example: 10.100.102.1*
+<br/>_Example: 10.100.102.1_
 - Gateway MAC: MAC address of the default gateway (router)
 - Network subnet: IP addresses to ping in each scan
-*Example: 10.100.102.143/24
+<br/>_Example: 10.100.102.143/24_
+
+<br/>Enter all parameters, and moonitor will do the rest :)
+
+## Other Options
+* Enable user:
+```bash
+# Replace <user_email> with user_email
+./moonitor enable-user <user_email>
+```
