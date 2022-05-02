@@ -144,7 +144,8 @@ The wizard will ask you for the following parameters:
 ```
 
 ## Configuration
-#### moonlan (API) configuration
+
+### moonlan (API) configuration
 path: /etc/moonitor/api/config.json
 
 | key                         | meaning                                             |
@@ -158,10 +159,11 @@ path: /etc/moonitor/api/config.json
 | ip_forward_file_path        | Path to file determining packet forwarding behavior |
 | allowed_origins             | List of allowed origins for CORS                    |
 
-#### moonlan (API) devices
+
+### moonlan (API) devices
 path: /etc/moonitor/api/devices.json
 
-List of devices, with each device having the following format:
+Includes a list of devices, with each device having the following format:
 {
    "name": ...,
    "mac": ...,
@@ -171,7 +173,8 @@ List of devices, with each device having the following format:
 Supported types:
 PC, Phone, Game console, Router, TV Adapter, Music, TV, Tablet, Printer, Security
 
-#### moonscan configuration
+
+### moonscan configuration
 path: /etc/moonitor/scan/config.json
 
 | key            | meaning                               |
@@ -179,3 +182,43 @@ path: /etc/moonitor/scan/config.json
 | network_subnet | Subnet of IP addresses to scan        |
 | scan_interval  | Time between scans                    |
 | ports_to_scan  | Number of most frequent ports to scan |
+
+
+### Nginx (HTTP server) configuration
+path: /etc/nginx/sites-available/moonlan.conf
+
+Example HTTP configuration:
+```
+server {
+	server_name <server_name>;
+	listen 80;
+	location / {
+		proxy_pass http://127.0.0.1:3000;
+		proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header Host $host;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	}
+}
+```
+
+Example HTTPS configuration:
+```
+server {
+   server_name <server_name>;
+	location / {
+		proxy_pass http://127.0.0.1:3000;
+	}
+   listen 443 ssl; # managed by Certbot
+   ssl_certificate /etc/letsencrypt/live/<server_name>/fullchain.pem; # managed by Certbot
+   ssl_certificate_key /etc/letsencrypt/live/<server_name>/privkey.pem; # managed by Certbot
+   include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+} server {
+    if ($host = <server_name>) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+    listen 80;
+    server_name <server_name>;
+    return 404; # managed by Certbot
+}
+```
