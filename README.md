@@ -142,3 +142,40 @@ The wizard will ask you for the following parameters:
 # Replace <user_email> with user_email
 ./moonitor disable-user <user_email>
 ```
+
+## Configuration
+#### moonlan (API) configuration
+path: /etc/moonitor/api/config.json
+
+| key                         | meaning                                             |
+|-----------------------------|-----------------------------------------------------|
+| secret_key                  | Private key for JWT signing                         |
+| algorithm                   | Algorithm for JWT signing                           |
+| access_token_expire_minutes | JWT expire duration                                 |
+| database_name               | MongoDB database name                               |
+| gateway_ip                  | IP of default gateway in LAN (usually router)       |
+| gateway_mac                 | MAC of default gateway in LAN (usually router)      |
+| ip_forward_file_path        | Path to file determining packet forwarding behavior |
+| allowed_origins             | List of allowed origins for CORS                    |
+
+#### moonlan (API) devices
+path: /etc/moonitor/api/devices.json
+
+List of devices, with each device having the following format:
+{
+   "name": ...,
+   "mac": ...,
+   "type": ...,
+}
+
+Supported types:
+PC, Phone, Game console, Router, TV Adapter, Music, TV, Tablet, Printer, Security
+
+#### moonscan configuration
+path: /etc/moonitor/scan/config.json
+
+| key            | meaning                               |
+|----------------|---------------------------------------|
+| network_subnet | Subnet of IP addresses to scan        |
+| scan_interval  | Time between scans                    |
+| ports_to_scan  | Number of most frequent ports to scan |
