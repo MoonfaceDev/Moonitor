@@ -1,5 +1,10 @@
 # Moonitor
 
+- [Installation](#installation)
+- [Setup wizard](#setup-wizard)
+- [Other options](#other-options)
+- [Configuration](#configuration)
+
 ## Installation
 
 1. Run Ubuntu 22.04 LTS (Jammy Jellyfish)
