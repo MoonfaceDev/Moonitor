@@ -110,6 +110,7 @@ The wizard will ask you for the following parameters:
 - Gateway IP: IP address of the default gateway (router)
 <br/>_Example: 10.100.102.1_
 - Gateway MAC: MAC address of the default gateway (router)
+<br/>_Example: 12:34:56:78:90:AB_
 - Network subnet: IP addresses to ping in each scan
 <br/>_Example: 10.100.102.0/24_
 
