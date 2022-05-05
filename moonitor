@@ -21,6 +21,7 @@ install-nginx() {
 	if [ -z "$1" ]
 	  then
     	    echo "No server hostname supplied"
+	    exit 0
 	fi
 	wget http://nginx.org/keys/nginx_signing.key
 	apt-key add nginx_signing.key
@@ -37,10 +38,12 @@ copy-template() {
 	if [ -z "$1" ]
 	  then
     	    echo "No server hostname supplied"
+	    exit 0
 	fi
 	if [ -z "$2" ]
 	  then
     	    echo "No network subnet supplied"
+	    exit 0
 	fi
 	mkdir /etc/moonitor
 	cp -a template/* /etc/moonitor/
@@ -56,6 +59,7 @@ install-ui() {
 	if [ -z "$1" ]
 	  then
     	    echo "No server hostname supplied"
+	    exit 0
 	fi
 	git clone https://github.com/MoonfaceDev/moonitor-build.git /etc/moonitor/app
 	find /etc/moonitor/app -type f -exec sed -i -e "s|<origin>|http://$1|g" {} \;
@@ -120,6 +124,7 @@ enable-user() {
 	if [ -z "$1" ]
 	  then
     	    echo "No user email supplied"
+	    exit 0
 	fi
 	mongo --eval "db.users.update({\"email\":\"$1\"},{\$set:{\"disabled\":false}});" moonlan
 }
@@ -128,6 +133,7 @@ disable-user() {
 	if [ -z "$1" ]
 	  then
     	    echo "No user email supplied"
+	    exit 0
 	fi
 	mongo --eval "db.users.update({\"email\":\"$1\"},{\$set:{\"disabled\":true}});" moonlan
 }
