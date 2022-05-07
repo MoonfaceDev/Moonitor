@@ -200,8 +200,8 @@ Includes a list of devices, with each device having the following format:
 {
    "name": "Elai's Phone",
    "mac": "12:34:56:78:90:AB",
-   "type": "Phone",
-},
+   "type": "Phone"
+}
 ```
 
 Supported types:
