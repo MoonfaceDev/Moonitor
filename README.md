@@ -19,7 +19,7 @@
    - Install VirtualBox, accept all default settings and follow the wizard
    - Open VirtualBox
    - Click 'New' to create a new machine
-   - Enter your VM name, change the 'Type' to Linux and the 'Version' to Ubuntu (64-bit), and then proceed
+   - Enter your VM name (Recommended: 'Moonitor'), change the 'Type' to Linux and the 'Version' to Ubuntu (64-bit), and then proceed
    - Set the machine RAM, the default memory size should be sufficient for Moonitor. Then proceed
    - Select 'Create a virtual hard disk now' and proceed
    - Select 'VDI (VirtualBox Disk Image)' as hard disk file type, and proceed
@@ -46,7 +46,7 @@
    - Select 'Erase disk and install Ubuntu' and click 'Install Now' to proceed (Don't worry! It only removes the VM temporary disk, and will not affect your host disk)
    - A popup regarding disk changes will appear, click 'Continue'
    - Select your time zone and proceed
-   - Fill in your name, computer name, username and password. Then proceed
+   - Fill in your name, computer name (Recommended: 'moonitor'), username (Recommended: 'moonitor') and password (Recommended: 'a'). Write down your username and password and then proceed
    - After a few minutes, the installation will finish. Click 'Restart Now' when the popup appears
    - When the message 'Please remove the installation medium, then press ENTER:' appears, press enter
    - When the restart finishes, an 'Online Accounts' page will appear, click 'Skip' to proceed
