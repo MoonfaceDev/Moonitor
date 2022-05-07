@@ -59,13 +59,14 @@
 2. Start a bash on the VM using Terminal app, or an ssh connection
    <details><summary>How to start a terminal</summary>
    
-   <br/>
-   - Click on the apps icon: 
-	<br/><img src="https://user-images.githubusercontent.com/36325466/167251305-53d67fd4-5a19-4f09-a498-45e95a97270f.png"><br/>
+   - Click on the apps icon:
+	
+   <img src="https://user-images.githubusercontent.com/36325466/167251305-53d67fd4-5a19-4f09-a498-45e95a97270f.png">
+
    - Type 'Terminal' in the search bar
    - Click on the first result
    - Congratulations! From now on, you will run all commands using the terminal you just opened
-   </details>
+</details>
    
 3. Switch to root user
 ```bash
