@@ -15,6 +15,7 @@
    - [Ubuntu image](https://ubuntu.com/download/desktop/thank-you?version=22.04&architecture=amd64)
    
    <br/>**Add virutal machine:**
+   - Install VirtualBox, accept all default settings and follow the wizard
    - Open VirtualBox
    - Click 'New' to create a new machine
    - Enter your VM name, change the 'Type' to Linux and the 'Version' to Ubuntu (64-bit), and then proceed
@@ -27,7 +28,7 @@
    <br/>**Configure network:**
    - Click 'Settings' to open VM settings window
    - Click 'Network' and set 'Attached to' to 'Bridged Adapter'
-   - Set 'Name' to a host interface from the list
+   - Set 'Name' to a host interface from the list (If you are not sure, pick the first option)
    - Click 'OK' to save the settings
    
    <br/>**Boot the machine:**
@@ -41,7 +42,7 @@
    - After a while, a white screen will appear. Click 'Install Ubuntu'
    - Select your keyboard layout and proceed
    - In 'Updates and other software', select 'Minimal installation' and proceed
-   - Select 'Erase disk and install Ubuntu' and click 'Install Now' to proceed
+   - Select 'Erase disk and install Ubuntu' and click 'Install Now' to proceed (Don't worry! It only removes the VM temporary disk, and will not affect your host disk)
    - A popup regarding disk changes will appear, click 'Continue'
    - Select your time zone and proceed
    - Fill in your name, computer name, username and password. Then proceed
@@ -55,6 +56,15 @@
    </details>
 
 2. Start a bash on the VM using Terminal app, or an ssh connection
+   <details><summary>How to start a terminal</summary>
+   
+   <br/>
+   - Click on the apps icon: 
+	<br/><img src="https://user-images.githubusercontent.com/36325466/167251305-53d67fd4-5a19-4f09-a498-45e95a97270f.png"><br/>
+   - Type 'Terminal' in the search bar
+   - Click on the first result
+   - Congratulations! From now on, you will run all commands using the terminal you just opened
+   </details>
    
 3. Switch to root user
 ```bash
@@ -80,46 +90,56 @@ cd "Moonitor Setup"
 apt-get install -y net-tools
 ```
 
-2. Check VM's IP address and subnet (keep for later use)
+2. Check VM's IP address and subnet (write them down for later use)
 ```bash
-ip a
+ip -4 -br a
 ```
+![image](https://user-images.githubusercontent.com/36325466/167251793-3ba4a8df-74d2-4a6d-abc3-00b2d7c6c689.png)<br/>
 Example:
-![ip-a-guide](https://user-images.githubusercontent.com/36325466/166083106-83c2c111-fc58-4ecf-853f-a3be3cbe15cb.png)
-In this example, the VM's IP address is 10.100.102.143 and the subnet is 10.100.102.0/24.
+In this example, the VM's IP address is `10.100.102.145` and the subnet is `10.100.102.0/24`. Write them down!
 
-3. Check gateway IP:
+3. Check gateway IP (will be used for spoofing, write it down for later use):
 ```bash
-route -n
+route -n | sed -n 2,3p
 ```
-![route-n-guide](https://user-images.githubusercontent.com/36325466/166083652-3dcf73c9-d01f-4445-9a78-3259720eae72.png)
+![image](https://user-images.githubusercontent.com/36325466/167252102-4d77125a-12f5-46a8-9dc5-614028f947bf.png)<br/>
 Example:
-In this example, the gateway IP address is 10.100.102.1
+In this example, the gateway IP address is `10.100.102.1`. Write it down!
 
 4. Check gateway MAC:
 ```bash
 # Replace <gateway_ip> with gateway's IP address
+# Example: arp 10.100.102.1
 arp <gateway_ip>
 ```
-![arp-guide](https://user-images.githubusercontent.com/36325466/166083908-9a5053eb-ea51-4cd9-b8bd-e2590e4a46dd.png)
+![image](https://user-images.githubusercontent.com/36325466/167252126-548bcbb0-de3c-4ff9-ab2e-1211431c6c08.png)<br/>
 Example:
-In this example, the MAC addresses ends with '...:c4:87'
+In this example, the gateway MAC addresses is `34:49:5b:08:c4:87`. Write it down!
 
 5. Run Moonitor setup wizard
 ```bash
 ./moonitor setup
 ```
 The wizard will ask you for the following parameters:
-- Server hostname: hostname (IP address, NetBIOS or FQDN) for external users to connect to the server
-<br/>_Examples: 10.100.102.143, elaipc_
+- Server hostname: hostname (IP address, NetBIOS or domain name) for external users to connect to the server
+<br/>_Example:_ `10.100.102.145` (from step 2)
 - Gateway IP: IP address of the default gateway (router)
-<br/>_Example: 10.100.102.1_
+<br/>_Example:_ `10.100.102.1` (from step 3)
 - Gateway MAC: MAC address of the default gateway (router)
-<br/>_Example: 12:34:56:78:90:AB_
+<br/>_Example:_ `34:49:5b:08:c4:87` (from step 4)
 - Network subnet: IP addresses to ping in each scan
-<br/>_Example: 10.100.102.0/24_
+<br/>_Example:_ `10.100.102.0/24` (from step 2)
 
 <br/>Enter all parameters, and moonitor will do the rest :)
+
+## Use Moonitor
+
+- After the wizard finishes, you can finally use moonitor!
+- Open your favorite browser in any LAN device (your PC, your phone, whatever!)
+- Enter the server address. It is usually your server IP address (Example: `http://10.100.102.145`)
+- Enjoy using Moonitor!
+- Don't worry if you want to power off the VM. When you turn it back on, Moonitor should start automatically!
+- It is recommended to manually add recognized devices. You may follow the [instructions](#moonlan-api-devices)
 
 ## Other Options
 * Start services:
@@ -170,15 +190,27 @@ path: /etc/moonitor/api/config.json
 path: /etc/moonitor/api/devices.json
 
 Includes a list of devices, with each device having the following format:
+```json
 {
-   "name": ...,
-   "mac": ...,
-   "type": ...,
-}
+   "name": "Elai's Phone",
+   "mac": "12:34:56:78:90:AB",
+   "type": "Phone",
+},
+```
 
 Supported types:
 PC, Phone, Game console, Router, TV Adapter, Music, TV, Tablet, Printer, Security
 
+<details><summary>How to edit the devices file?</summary>
+
+- Enter the file
+	
+	```bash
+  	sudo nano /etc/moonitor/api/devices.json
+  	```
+- Add your devices using the format mentioned above.
+- When you finish editing, save the file: press CTRL+X, then press Y, and then press ENTER
+</details>
 
 ### moonscan configuration
 path: /etc/moonitor/scan/config.json
