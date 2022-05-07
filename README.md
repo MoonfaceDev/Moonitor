@@ -138,6 +138,12 @@ The wizard will ask you for the following parameters:
 - Open your favorite browser in any LAN device (your PC, your phone, whatever!)
 - Enter the server address. It is usually your server IP address (Example: `http://10.100.102.145`)
 - Enjoy using Moonitor!
+- After you create an account, you have to enable it. Use the following command:
+	
+	```bash
+	# Replace <user_email> with user_email
+	./moonitor enable-user <user_email>
+	```
 - Don't worry if you want to power off the VM. When you turn it back on, Moonitor should start automatically!
 - It is recommended to manually add recognized devices. You may follow the [instructions](#moonlan-api-devices)
 
