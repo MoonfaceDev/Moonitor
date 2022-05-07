@@ -1,7 +1,12 @@
 [
   {
-    "name": "EXAMPLE-DEVICE",
+    "name": "EXAMPLE-DEVICE-1",
     "mac": "00:00:00:00:00:00",
     "type": "Phone"
+  },
+  {
+    "name": "EXAMPLE-DEVICE-2",
+    "mac": "11:11:11:11:11:11",
+    "type": "PC"
   }
 ]
