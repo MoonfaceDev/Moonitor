@@ -2,6 +2,7 @@
 
 - [Installation](#installation)
 - [Setup wizard](#setup-wizard)
+- [Use Moonitor](#use-moonitor)
 - [Other options](#other-options)
 - [Configuration](#configuration)
 
