@@ -61,7 +61,7 @@
    
    - Click on the apps icon:
 	
-   <img src="https://user-images.githubusercontent.com/36325466/167251305-53d67fd4-5a19-4f09-a498-45e95a97270f.png">
+     <img src="https://user-images.githubusercontent.com/36325466/167251305-53d67fd4-5a19-4f09-a498-45e95a97270f.png">
 
    - Type 'Terminal' in the search bar
    - Click on the first result
