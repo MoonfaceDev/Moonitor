@@ -1,5 +1,7 @@
 # Moonitor
 
+Moonitor is your LAN devices management server. You can track their uptime, get network details about them, and watch their history. If you look for something more agressive, Moonitor also lets you intercept their internet connection. With such abilities, security is a major concern for us, so we implemented an advanced security mechanism. We also focused on building an intuitive user interface for your interactions to be as simple as possible.
+
 ![image](https://user-images.githubusercontent.com/36325466/176863107-161fe8bd-627f-48ad-92e3-483fea6ec3ff.png)
 
 - [Installation](#installation)
