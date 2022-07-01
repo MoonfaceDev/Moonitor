@@ -1,5 +1,7 @@
 # Moonitor
 
+![image](https://user-images.githubusercontent.com/36325466/176863107-161fe8bd-627f-48ad-92e3-483fea6ec3ff.png)
+
 - [Installation](#installation)
 - [Setup wizard](#setup-wizard)
 - [Use Moonitor](#use-moonitor)
