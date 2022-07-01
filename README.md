@@ -87,8 +87,8 @@ apt-get install -y git
 5. Clone Moonitor Setup files from GitHub
 ```bash
 cd /root
-git clone https://github.com/MoonfaceDev/moonitor-setup.git "Moonitor Setup"
-cd "Moonitor Setup"
+git clone https://github.com/MoonfaceDev/Moonitor.git "Moonitor"
+cd "Moonitor"
 ```
 
 ## Setup Wizard
